@@ -1,0 +1,14 @@
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+/.sbtserver
+/.cache-main
+/.cache-tests
+project/.sbtserver
+project/idea.sbt
+.DS_Store
