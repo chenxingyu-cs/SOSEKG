@@ -65,4 +65,33 @@ public class PaperController {
         }
         return ok();
     }
+
+    public Result paperPaper(long id) {
+        Session session = SessionUtils.getSessionFactory().openSession();
+
+        Logger.info("haha" + id);
+        Paper paper = session.load(Paper.class, id);
+        if (paper != null) {
+            List<String> nodes = new ArrayList<>();
+            List<String> links = new ArrayList<>();
+            nodes.add("{\"id\": \"" + paper.getTitle() + "\"}");
+            Logger.info(paper.getTitle());
+            Logger.info(paper.getAuthors().size() + "");
+            for (Paper p: paper.getCiteMe()) {
+                nodes.add("{\"id\": \"" + p.getTitle() + "\"}");
+                links.add("{\"source\": \"" + p.getTitle() + "\", \"target\": \"" + paper.getTitle() + "\", \"value\": 1}");
+            }
+
+            for (Paper p: paper.getCiteOther()) {
+                nodes.add("{\"id\": \"" + p.getTitle() + "\"}");
+                links.add("{\"source\": \"" + paper.getTitle() + "\", \"target\": \"" + p.getTitle() + "\", \"value\": 1}");
+            }
+
+            Logger.info(nodes.toString());
+            Logger.info(links.toString());
+            String result = "{\"nodes\": " + nodes.toString() + ", \"link\": " + links.toString() + "}";
+            return ok(result);
+        }
+        return ok();
+    }
 }
