@@ -19,3 +19,4 @@ GET     /paper/countOfPaper                  controllers.PaperController.countOf
 GET     /paper/countOfAuthor                  controllers.PaperController.countOfAuthor
 GET     /paper/author/:id                          controllers.PaperController.paperAuthor(id: Long)
 GET     /paper/paper/:id                          controllers.PaperController.paperPaper(id: Long)
+GET     /paper/authorAuthor/:id                          controllers.PaperController.authorAuthor(id: Long)

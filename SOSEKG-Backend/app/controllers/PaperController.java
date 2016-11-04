@@ -94,4 +94,32 @@ public class PaperController {
         }
         return ok();
     }
+
+    public Result authorAuthor(long id) {
+        Session session = SessionUtils.getSessionFactory().openSession();
+
+        Logger.info("heihei" + id);
+        Author author = session.load(Author.class, id);
+        if (author != null) {
+            List<String> nodes = new ArrayList<>();
+            List<String> links = new ArrayList<>();
+            Set<Paper> papers = author.getPapers();
+            for (Paper paper : papers) {
+                Logger.info("paper Title: " + paper.getTitle());
+                Set<Author> authorSet = paper.getAuthors();
+                Logger.info("author size: " + authorSet.size());
+                for (Author co : authorSet) {
+                    if (!co.getName().equals(author.getName())) {
+                        nodes.add("{\"id\": \"" + co.getName() + "\"}");
+                        links.add("{\"source\": \"" + author.getName() + "\", \"target\": \"" + co.getName() + "\", \"value\": 1}");
+                    }
+                }
+            }
+            Logger.info(nodes.toString());
+            Logger.info(links.toString());
+            String result = "{\"nodes\": " + nodes.toString() + ", \"link\": " + links.toString() + "}";
+            return ok(result);
+        }
+        return ok();
+    }
 }
