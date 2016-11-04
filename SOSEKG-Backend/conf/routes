@@ -17,3 +17,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /paper/all                  controllers.PaperController.getAllPapers
 GET     /paper/countOfPaper                  controllers.PaperController.countOfPaper
 GET     /paper/countOfAuthor                  controllers.PaperController.countOfAuthor
+GET     /paper/author/:id                          controllers.PaperController.paperAuthor(id: Long)

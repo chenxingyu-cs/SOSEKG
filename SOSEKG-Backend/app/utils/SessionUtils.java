@@ -12,19 +12,18 @@ import javax.inject.Singleton;
 @Singleton
 public class SessionUtils {
 
-    private static Session session;
+    private static SessionFactory sessionFactory;
 
-    public static synchronized Session getSession() {
-        if (session == null) {
+    public static synchronized SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
             Configuration configuration = new Configuration();
             configuration.driverConfiguration()
                     .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
                     .setURI("http://neo4j:dxy@localhost:7474");
 
-            SessionFactory sessionFactory = new SessionFactory(configuration, "models");
-            session = sessionFactory.openSession();
+            sessionFactory = new SessionFactory(configuration, "models");
         }
-        return session;
+        return sessionFactory;
     }
 
 }
