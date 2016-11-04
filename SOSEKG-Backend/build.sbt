@@ -12,5 +12,6 @@ libraryDependencies ++= Seq(
   javaWs,
   "org.neo4j" % "neo4j-ogm-core" % "2.0.5",
   "org.neo4j" % "neo4j-ogm-http-driver" % "2.0.5",
-  "org.neo4j" % "neo4j-ogm-embedded-driver" % "2.0.5"
+  "org.neo4j" % "neo4j-ogm-embedded-driver" % "2.0.5",
+  "org.projectlombok" % "lombok" % "1.16.10"
 )

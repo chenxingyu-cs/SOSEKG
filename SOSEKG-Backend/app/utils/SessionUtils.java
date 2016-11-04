@@ -19,7 +19,7 @@ public class SessionUtils {
             Configuration configuration = new Configuration();
             configuration.driverConfiguration()
                     .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
-                    .setURI("http://neo4j:123@localhost:7474");
+                    .setURI("http://neo4j:dxy@localhost:7474");
 
             SessionFactory sessionFactory = new SessionFactory(configuration, "models");
             session = sessionFactory.openSession();
